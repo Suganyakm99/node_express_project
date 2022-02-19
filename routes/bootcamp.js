@@ -1,30 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { getAllBootcamps, getBootcamp, createBootcamp, updateBootcamp, deleteBootcamp } = require('../controllers/bootcamp');
 
-router.get("/" , (req,res,next)=> {
-    res.json({ status : "SUCCESS" , message: "request processed successfully"});
-    next();
-})
-
-router.get("/:id" , (req,res,next)=> {
-    res.json({ status : "SUCCESS" , message: ` fetched data for id ${req.params.id}`});
-    next();
-})
-
-router.post("/" , (req,res,next)=> {
-    res.json({ status : "SUCCESS" , message: ` added data for id ${req.params.id}`});
-    next();
-})
-
-router.put("/:id" , (req,res,next)=> {
-    res.json({ status : "SUCCESS" , message: ` updated data for id ${req.params.id}`});
-    next();
-})
-
-router.delete("/:id" , (req,res,next)=> {
-    res.json({ status : "SUCCESS" , message: ` deleted data for id ${req.params.id}`});
-    next();
-})
+router.route('/').get(getAllBootcamps).post(createBootcamp);
+router.route('/:id').get(getBootcamp).put(updateBootcamp).delete(deleteBootcamp);
 
 
-module.exports = router ;
+module.exports = router;
