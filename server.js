@@ -1,10 +1,12 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const bootcamps = require('./routes/bootcamp')
-const logger = require('./middleware/logger')
+const bootcamps = require('./routes/bootcamp');
+const logger = require('./middleware/logger');
+const { connectDB }= require('./config/db')
 
 dotenv.config({ path: './config/config.env' })
 
+connectDB();
 const app = express();
 
 app.use(logger);
